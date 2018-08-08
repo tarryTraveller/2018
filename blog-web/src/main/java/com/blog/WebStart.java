@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @ServletComponentScan
 public class WebStart {
 
+	// 启动类
 	public static void main(String[] args) {
 		SpringApplication.run(WebStart.class, args);
 	}
