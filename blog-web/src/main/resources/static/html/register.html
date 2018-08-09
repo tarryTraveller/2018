@@ -9,15 +9,49 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta http-equiv="cache-control" content="max-age=300" />
 		<title>博客官网注册页面</title>
+		<link rel="stylesheet" href="/css/common.css" />
 		<link rel="stylesheet" href="/css/register/register-main.css" />
 	</head>
 	<body>
-		<div class="drag">
-			<div class="bg"></div>
-			<div class="text" onselectstart="return false;">请拖动滑块解锁</div>
-			<div class="btn">&gt;&gt;</div>
+		<span style="float:right;position: absolute; right: 180px;top:180px;">已有账号？<a href="#" style="color: blue;">立即登录</a></span>
+		<div class="top-register">
+			<label class="top-title">
+				<a href="#">
+				<img alt="星云" style="margin-top: 15px;" src="/img/logo.png" width="40" height="40">
+				<span style="font-size:25px;">星云</span>
+				</a>
+				<span style="letter-spacing: 1px;">账号注册</span>
+			</label>
+		</div>
+		<div class="main-register">
+			<div class="same-register">
+				<label class="head-title">欢迎加入星云</label>
+			</div>
+			<div class="same-register">
+				<input class="field-same" type="text" placeholder="设置用户名" />
+			</div>
+			<div class="same-register">
+				<input class="field-same" type="text" placeholder="设置你的登录密码" />
+			</div>
+			<div class="same-register">
+				<input class="field-same" type="text" placeholder="请再次输入你的密码" />
+			</div>
+			<div class="drag-register">
+				<div class="bg-register"></div>
+				<div class="text-register" onselectstart="return false;">请拖动滑块解锁</div>
+				<div class="btn-register">&gt;&gt;</div>
+			</div>
+			<div class="drag-register">
+				<button class="same-register2">
+					同意条款并注册
+				</button>
+			</div>
+			<div class="same-register" style="">
+				<input type="checkbox" value="checkbox" checked="checked" /> 
+				<a href="#" style="color: #00c1de;">《法律声明和隐私权政策》</a>
+			</div>
 		</div>
 		<script type="text/javascript" src="/js/jquery-1.9.1.min.js"></script>
-		<script type="text/javascript" src="/js/register/register-main.js?v=1"></script>
+		<script type="text/javascript" src="/js/register/register-main.js?v=2"></script>
 	</body>
 </html>

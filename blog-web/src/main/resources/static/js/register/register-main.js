@@ -1,12 +1,23 @@
 $(function(){
+	checkCode();
+	but();
+});
+
+function but(){
+	$(".same-register2").click(function(){
+		alert(1);
+	});
+}
+
+function checkCode(){
 	//一、定义一个获取DOM元素的方法
 	var getter = function(selector) {
 		return document.querySelector(selector);
 	}, 
-	box = getter(".drag"), // 容器
-	bg = getter(".bg"), // 背景
-	text = getter(".text"), // 文字
-	btn = getter(".btn"), // 滑块
+	box = getter(".drag-register"), // 容器
+	bg = getter(".bg-register"), // 背景
+	text = getter(".text-register"), // 文字
+	btn = getter(".btn-register"), // 滑块
 	success = false, // 是否通过验证的标志
 	distance = box.offsetWidth - btn.offsetWidth;// 滑动成功的宽度（距离）
 	// 二、给滑块注册鼠标按下事件
@@ -72,4 +83,5 @@ $(function(){
 			document.onmouseup = null;
 		}
 	}
-});
+	
+}

@@ -1,20 +1,21 @@
-.drag {
+.drag-register {
 	width: 300px;
 	height: 40px;
 	line-height: 40px;
 	background-color: #e8e8e8;
 	position: relative;
 	margin: 0 auto;
+	margin-top: 15px;
 }
 
-.bg {
+.bg-register {
 	width: 40px;
 	height: 100%;
 	position: absolute;
-	background-color: #75CDF9;
+	background-color: #00c1de;
 }
 
-.text {
+.text-register {
 	position: absolute;
 	width: 100%;
 	height: 100%;
@@ -22,15 +23,83 @@
 	user-select: none;
 }
 
-.btn {
+.btn-register {
 	width: 40px;
 	height: 38px;
 	position: absolute;
 	border: 1px solid #ccc;
-	cursor: pointer;
+	cursor:move;
 	font-family: "宋体";
 	text-align: center;
 	background-color: #fff;
 	user-select: none;
 	color: #666;
+}
+
+.top-register{
+	line-height:70px;
+	width: 100%;
+	height: 70px;
+	background: white;
+	margin-bottom: 65px;
+}
+
+.top-title{
+	position: absolute;
+	left:140px;
+	font-size: 20px;
+}
+
+.top-title a{
+	text-decoration: none;
+	color: black;
+}
+
+a {
+	text-decoration: none;
+	color: black;
+}
+
+.same-register {
+	height: 50px;
+	width: 100%;
+	margin:0 auto;
+	background-color:white;
+	margin-top:15px;
+/* 	border: 1px solid red; */
+	text-align: center;
+	line-height: 50px;
+}
+
+.same-register2 {
+	height: 40px;
+	width: 300px;
+	margin:0 auto;
+	background-color:#00c1de;;
+/* 	border: 1px solid red; */
+	text-align: center;
+	line-height: 40px;
+	color: white;
+	outline: none;
+	border: none;
+	cursor: pointer;
+	font-size: 16px;
+}
+
+.main-register {
+	height: 500px;
+	width: 80%;
+	background: white;
+	margin: 0 auto;
+	padding-top: 15px;
+}
+.head-title{
+	font-size: 30px;
+	letter-spacing: 2px;
+}
+
+.field-same {
+	width: 282px;
+	height: 35px;
+	padding-left:15px; 
 }
