@@ -12,6 +12,12 @@ public class RegisterController {
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public String register() {
 		// TODO
-		return "register";
+		return "register/register";
+	}
+
+	// 点击显示《法律声明和隐私权政策》
+	@RequestMapping(value = "item", method = RequestMethod.GET)
+	public String showItem() {
+		return "register/register_item";
 	}
 }

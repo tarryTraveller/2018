@@ -8,24 +8,24 @@
 		<meta name="description" data-layout-content-pattern="$DECORATOR_TITLE" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta http-equiv="cache-control" content="max-age=300" />
-		<title>博客官网注册页面</title>
+		<title>星系永恒</title>
 		<link rel="stylesheet" href="/css/common.css" />
 		<link rel="stylesheet" href="/css/register/register-main.css" />
 	</head>
 	<body>
-		<span style="float:right;position: absolute; right: 180px;top:180px;">已有账号？<a href="#" style="color: blue;">立即登录</a></span>
+		<span class="span-login">已有账号？<a href="#" class="a-login">立即登录</a></span>
 		<div class="top-register">
 			<label class="top-title">
 				<a href="#">
-				<img alt="星云" style="margin-top: 15px;" src="/img/logo.png" width="40" height="40">
-				<span style="font-size:25px;">星云</span>
-				</a>
-				<span style="letter-spacing: 1px;">账号注册</span>
+					<img alt="星云" src="/img/logo.png" class="img-logo">
+					<span class="span-logo">星系永恒</span>
+				</a>&nbsp;
+				<span  class="span-logo-title">账号注册</span>
 			</label>
 		</div>
 		<div class="main-register">
 			<div class="same-register">
-				<label class="head-title">欢迎加入星云</label>
+				<label class="head-title">欢迎加入星系</label>
 			</div>
 			<div class="same-register">
 				<input class="field-same" type="text" placeholder="设置用户名" />
@@ -46,9 +46,10 @@
 					同意条款并注册
 				</button>
 			</div>
-			<div class="same-register" style="">
-				<input type="checkbox" value="checkbox" checked="checked" /> 
-				<a href="#" style="color: #00c1de;">《法律声明和隐私权政策》</a>
+			<div class="same-register" >
+				<input type="checkbox" id="checkbox-register"  value="checkbox" checked="checked" /> 
+				<label for="checkbox-register"></label>
+				<a href="#" class="a-xieyi">《法律声明及隐私权政策》</a>
 			</div>
 		</div>
 		<script type="text/javascript" src="/js/jquery-1.9.1.min.js"></script>
