@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:layout="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org"
-	layout:decorator="layout/test">
+	layout:decorator="layout/main">
 	<head>
 		<meta charset="UTF-8">
 		<title>星系永恒</title>
@@ -9,7 +9,7 @@
 	</head>
 	<body>
 		<span class="span-login">已有账号？<a href="#" class="a-login">立即登录</a></span>
-		<div class="top-register" >
+		<div class="top-register" data-layout-fragment="content" >
 			<label class="top-title">
 				<a href="#">
 					<img alt="星云" src="/img/logo.png" class="img-logo">
