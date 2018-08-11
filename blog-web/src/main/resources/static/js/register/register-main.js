@@ -9,6 +9,8 @@ function but(){
 	});
 }
 
+/**滑块验证
+ */
 function checkCode(){
 	//一、定义一个获取DOM元素的方法
 	var getter = function(selector) {
