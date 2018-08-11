@@ -1,3 +1,15 @@
+$(function(){
+	//SpringSecurity的csrf设置
+    var token = $("meta[name='_csrf']").attr("content");
+    var header = $("meta[name='_csrf_header']").attr("content");
+    if (header && token) {
+        $(document).ajaxSend(function(e, xhr, options) {
+            xhr.setRequestHeader(header, token);
+        });
+    }
+});
+
+
 /**
  * 时间格式化
  */
