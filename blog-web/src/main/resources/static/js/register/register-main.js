@@ -1,22 +1,32 @@
-$(function(){
+$(function() {
 	checkCode();
 	but();
+	checkForm();
 });
 
-function but(){
-	$(".same-register2").click(function(){
+function but() {
+	$(".same-register2").click(function() {
 		alert(1);
 	});
 }
 
-/**滑块验证
+function checkForm() {
+	$(".mid-input-same").mouseover(function(){
+		$(this).css("cursor","text");
+	});
+	$(".mid-input-same").click(function(){
+		$(this).find("input[class='field-same']").focus();
+	});
+}
+
+/**
+ * 滑块验证
  */
-function checkCode(){
-	//一、定义一个获取DOM元素的方法
+function checkCode() {
+	// 一、定义一个获取DOM元素的方法
 	var getter = function(selector) {
 		return document.querySelector(selector);
-	}, 
-	box = getter(".drag-register"), // 容器
+	}, box = getter(".drag-register"), // 容器
 	bg = getter(".bg-register"), // 背景
 	text = getter(".text-register"), // 文字
 	btn = getter(".btn-register"), // 滑块
@@ -85,5 +95,5 @@ function checkCode(){
 			document.onmouseup = null;
 		}
 	}
-	
+
 }
