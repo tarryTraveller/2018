@@ -11,6 +11,7 @@ public class IndexController {
 	// 首页
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public String index() {
+		new String(new char[6], 0, 0);
 		return "index";
 	}
 }

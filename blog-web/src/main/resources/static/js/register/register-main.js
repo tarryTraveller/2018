@@ -1,7 +1,7 @@
 $(function() {
-	checkCode();
+	checkForm();//校验表单
+	checkCode();//校验验证码
 	but();
-	checkForm();
 });
 
 function but() {
@@ -10,12 +10,49 @@ function but() {
 	});
 }
 
+/**
+ * 校验表单属性，且修改样式
+ * @returns
+ */
 function checkForm() {
-	$(".mid-input-same").mouseover(function(){
-		$(this).css("cursor","text");
+	var divBox = $(".mid-input-same"); //外层div
+	var inputBox = $("input[class='field-same']");//div里面的input
+	var spanBox = $("span[class='mid-span-same']");//div里面的 'x'号 用来清空input
+	//放到div上 改变鼠标手样式
+	divBox.mouseover(function() {
+		$(this).css("cursor", "text");
 	});
-	$(".mid-input-same").click(function(){
+	//点击div区域  ，让input获取焦点
+	divBox.click(function() {
 		$(this).find("input[class='field-same']").focus();
+	});
+	//input聚焦后   新增div的边框样式
+	divBox.find("input[class='field-same']").focus(function(){
+		$(this).parent().css({"border-color":"#4486E9","box-shadow":"#C4D9F8 0px 0px 3px 1px"});
+	});
+	//input失焦后   移除div的边框样式
+	divBox.find("input[class='field-same']").blur(function(){
+		$(this).parent().css({"border-color":"","box-shadow":""});
+	});
+	//输入框的键盘按键弹起事件 ， 监听输入框的值的长度，  大于0就显示小叉叉 ， 否则不显示
+	inputBox.keyup(function() {
+		if ($(this).val().length > 0) {
+			$(this).next().show();
+			if($(this).next().next().is($("span[class='mid-span-same2']"))){
+				$("#sp-eye").show();
+			}
+		} else {
+			$(this).siblings("span[class='mid-span-same']").hide();
+			$("#sp-eye").hide();
+		}
+	});
+	//小叉叉 图表  ：放上去鼠标变样式  ，点击之后隐藏并且清空输入框的值
+	spanBox.mouseover(function() {
+		$(this).css("cursor", "pointer");
+	}).click(function() {
+		$(this).prev("input[class='field-same']").val('');
+		$(this).hide();
+		$("#sp-eye").hide();
 	});
 }
 

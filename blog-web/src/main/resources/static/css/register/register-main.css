@@ -16,11 +16,15 @@
 	width: 40px;
 	height: 40px;
 	margin-top: 15px;
-	border-radius: 35px;
+	border-radius: 5px;
+	vertical-align: middle;
+	display: inline-block;
+	margin-top: 0;
 }
 
 .span-logo {
 	font-size: 25px;
+	vertical-align: middle;
 }
 
 .span-logo-title {
@@ -97,7 +101,7 @@ a {
 	margin: 0 auto;
 	background-color: white;
 	margin-top: 15px;
-	border: 1px solid red;
+	/* 	border: 1px solid red; */
 	text-align: center;
 	line-height: 50px;
 	position: relative;
@@ -134,18 +138,27 @@ a {
 .mid-input-same {
 	width: 300px;
 	height: 50px;
-	border: 1px solid blue;
+	border: 1px solid #D9D9D9;
 	margin: 0 auto;
 	position: relative;
 	border-radius: 3px;
 }
 
 .mid-span-same {
-	display: inline-block;
-	float: left;
-	margin-left: 280px;
+/* 		display: inline-block; */
+	float: right;
+	margin-right: 5px;
 	font-size: 22px;
 	color: gray;
+	display: none;
+}
+.mid-span-same2 {
+/* 		display: inline-block; */
+	float: right;
+	margin-right: 5px;
+	font-size: 22px;
+	color: gray;
+	display: none;
 }
 
 input {
@@ -153,14 +166,14 @@ input {
 }
 
 .field-same {
-	width: 250px;
+	width: 230px;
 	height: 30px;
 	display: inline-block;
 	position: absolute;
 	left: 10px;
 	top: 10px;
 	font-size: 14px;
-	/* 	padding-left: 15px; */
+	outline: none;
 }
 
 #checkbox-register {
