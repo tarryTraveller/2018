@@ -18,6 +18,7 @@ function checkForm() {
 	var divBox = $(".mid-input-same"); //外层div
 	var inputBox = $("input[class='field-same']");//div里面的input
 	var spanBox = $("span[class='mid-span-same']");//div里面的 'x'号 用来清空input
+	var eyeBox = $("span[class='mid-span-same2']");//小眼睛 span
 	//放到div上 改变鼠标手样式
 	divBox.mouseover(function() {
 		$(this).css("cursor", "text");
@@ -39,20 +40,36 @@ function checkForm() {
 		if ($(this).val().length > 0) {
 			$(this).next().show();
 			if($(this).next().next().is($("span[class='mid-span-same2']"))){
-				$("#sp-eye").show();
+				$(this).next().next().show();
 			}
 		} else {
 			$(this).siblings("span[class='mid-span-same']").hide();
-			$("#sp-eye").hide();
+			$(this).next().next().hide();
 		}
 	});
-	//小叉叉 图表  ：放上去鼠标变样式  ，点击之后隐藏并且清空输入框的值
+	//小叉叉 图标  ：放上去鼠标变样式  ，点击之后隐藏并且清空输入框的值
 	spanBox.mouseover(function() {
 		$(this).css("cursor", "pointer");
 	}).click(function() {
 		$(this).prev("input[class='field-same']").val('');
 		$(this).hide();
-		$("#sp-eye").hide();
+		$(this).next().hide();
+//		eyeBox.hide();
+	});
+	//小眼睛 图标  ：放上去鼠标变样式  ，点击打开关闭眼睛 并且修改input的type类型
+	var eyeFlag = false;
+	eyeBox.mouseover(function() {
+		$(this).css("cursor", "pointer");
+	}).click(function() {
+		if(!eyeFlag){
+			$(this).prev().prev("input[class='field-same']").attr("type","text");
+			$(this).find("i").attr("class","iconfont icon-eye_no");
+			eyeFlag=true;
+		}else{
+			$(this).prev().prev("input[class='field-same']").attr("type","password");
+			$(this).find("i").attr("class","iconfont icon-eye");
+			eyeFlag=false;
+		}
 	});
 }
 
