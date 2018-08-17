@@ -24,7 +24,7 @@ function checkForm() {
 		$(this).css("cursor", "text");
 	});
 	//点击div区域  ，让input获取焦点
-	divBox.click(function() {
+	divBox.bind("click",function(){
 		$(this).find("input[class='field-same']").focus();
 	});
 	//input聚焦后   新增div的边框样式
@@ -54,21 +54,20 @@ function checkForm() {
 		$(this).prev("input[class='field-same']").val('');
 		$(this).hide();
 		$(this).next().hide();
-//		eyeBox.hide();
 	});
 	//小眼睛 图标  ：放上去鼠标变样式  ，点击打开关闭眼睛 并且修改input的type类型
-	var eyeFlag = false;
+//	var eyeFlag = false;
 	eyeBox.mouseover(function() {
 		$(this).css("cursor", "pointer");
 	}).click(function() {
-		if(!eyeFlag){
+		var typeAttr = $(this).prev().prev("input[class='field-same']").attr("type");
+		var iAttr = $(this).find("i").attr("class");
+		if(typeAttr=="password" && iAttr=="iconfont icon-eye"){
 			$(this).prev().prev("input[class='field-same']").attr("type","text");
 			$(this).find("i").attr("class","iconfont icon-eye_no");
-			eyeFlag=true;
 		}else{
 			$(this).prev().prev("input[class='field-same']").attr("type","password");
 			$(this).find("i").attr("class","iconfont icon-eye");
-			eyeFlag=false;
 		}
 	});
 }
