@@ -55,6 +55,7 @@ a {
 	height: 100%;
 	text-align: center;
 	user-select: none;
+	font-size: 14px;
 }
 
 .btn-register {
@@ -210,7 +211,11 @@ input {
 	right: 30px;
 	top: 0px;
 	height: 50px;
-	border: 1px solid red;
+/* 	border: 1px solid red; */
+	line-height: 50px;
+	font-size: 14px;
+	text-align: left;
+	color:#FF5C57;
 }
 .warn-tip-div2 {
 	width: 350px;
@@ -218,5 +223,16 @@ input {
 	right: 30px;
 	top: 0px;
 	height: 40px;
-	border: 1px solid red;
+/* 	border: 1px solid red; */
+	line-height: 40px;
+	font-size: 14px;
+	text-align: left;
+	color:#FF5C57;
+}
+
+.warn-tip-span{
+	display: none;
+}
+.warn-tip-span-after{
+	display: none;
 }

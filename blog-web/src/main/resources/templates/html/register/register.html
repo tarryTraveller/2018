@@ -25,12 +25,19 @@
 					<span class="span-login">已有账号？<a href="#" class="a-login">立即登录</a></span>
 				</div>
 				<div class="same-register" >
-					<div class="mid-input-same">
-						<input class="field-same"  id="username" name="username" type="text" placeholder="设置用户名" />
+					<div class="mid-input-same" id="username_div">
+						<input class="field-same" maxlength="15" id="username" name="username" type="text" placeholder="设置用户名" />
 						<span class="mid-span-same"><i class="iconfont icon-quxiao"></i></span>
 					</div>
 					<div class="warn-tip-div" >
-						222
+						<span class="warn-tip-span">
+							<i class="iconfont icon-quxiao-circle"></i>
+							请设置用户名
+						</span>
+						<span class="warn-tip-span-after">
+							<i class="iconfont icon-quxiao-circle"></i>
+							会员名为5-15的字母或数字，且不能全为数字
+						</span>
 					</div>
 				</div>
 				<div class="same-register">
@@ -44,7 +51,14 @@
 						</span>
 					</div>
 					<div class="warn-tip-div" >
-						222
+						<span>
+							<i class="iconfont icon-quxiao-circle"></i>
+							请设置登录密码
+						</span>
+						<span>
+							<i class="iconfont icon-quxiao-circle"></i>
+							密码设置不符合要求
+						</span>
 					</div>
 				</div>
 				<div class="same-register">
@@ -58,17 +72,27 @@
 						</span>
 					</div>
 					<div class="warn-tip-div" >
-						222
+						<span>
+							<i class="iconfont icon-quxiao-circle"></i>
+							请再次输入你的密码
+						</span>
+						<span>
+							<i class="iconfont icon-quxiao-circle"></i>
+							两次输入的密码不一致，请重新输入
+						</span>
 					</div>
 				</div>
 				<div class="same-register">
 				<div class="drag-register">
 					<div class="bg-register"></div>
-					<div class="text-register" onselectstart="return false;">请拖动滑块解锁</div>
+					<div class="text-register" onselectstart="return false;">请按住滑块，拖到最右边</div>
 					<div class="btn-register">&gt;&gt;</div>
 				</div>
 					<div class="warn-tip-div2" >
-						222
+						<span>
+							<i class="iconfont icon-quxiao-circle"></i>
+							请拖动滑块验证码
+						</span>
 					</div>
 				</div>
 				<div class="drag-register">
@@ -80,8 +104,11 @@
 					<input type="checkbox" id="checkbox-register"  value="checkbox" checked="checked" /> 
 					<label for="checkbox-register"></label>
 					<a href="/register/item" target="_blank" class="a-xieyi">《法律声明及隐私权政策》</a>
-					<div class="warn-tip-div2" >
-						222
+					<div class="warn-tip-div2" style="line-height: 50px;" >
+						<span>
+							<i class="iconfont icon-quxiao-circle"></i>
+							请勾选同意协议
+						</span>
 					</div>
 				</div>
 			</form>

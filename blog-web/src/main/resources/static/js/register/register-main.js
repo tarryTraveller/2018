@@ -1,6 +1,7 @@
 $(function() {
-	checkForm();//校验表单
+	checkFormStyle();//校验表单样式
 	checkCode();//校验验证码
+	checkFormContent();//检验表单输入情况
 	but();
 });
 
@@ -11,10 +12,49 @@ function but() {
 }
 
 /**
+ * 检验表单输入情况，js拦截不符合的输入
+ */
+function checkFormContent(){
+	var username = $("#username");//用户名
+	var password = $("#password");//密码
+	var repassword = $("#repassword");//重复密码
+	var reg_username = /^(?!\d+$)[\da-zA-Z]+$/;//只能是英文字母，且不能全是数字
+	var tips = null;
+	var tipUsernameFlag = 0;
+	//校验用户名输入是否合格
+	username.focus(function(){
+		if(tipUsernameFlag == 0){
+			tips = layer.tips("<span style='color:red;'><i class='iconfont icon-point'></i></span>&nbsp;&nbsp;" +
+					"<span style='color:black;'>用户名由英文和数字组成，且不能全为数字</span>" +
+					"<br/><span style='color:red;'><i class='iconfont icon-point'></i></span>&nbsp;&nbsp;" +
+					"<span style='color:black;'>用户名的长度为5~15位</span>", "#username_div", {
+				tips: ['2','#f0f0f0'],
+				area: ['300px', '100px'],
+				time:0
+			});
+			tipUsernameFlag = 1;
+		}
+	});
+	username.blur(function(){
+		tipUsernameFlag=0;
+		layer.close(tips);
+		if(BLOG.isNotNull(username.val())){//不为空的情况
+			$(this).parent().next().find("span[class='warn-tip-span']").hide();
+			if(reg_username.test($(this).val())){
+//				alert('ok');
+			}
+		}else{
+			$(this).parent().next().find("span[class='warn-tip-span']").show();
+		}
+	});
+	
+}
+
+/**
  * 校验表单属性，且修改样式
  * @returns
  */
-function checkForm() {
+function checkFormStyle() {
 	var divBox = $(".mid-input-same"); //外层div
 	var inputBox = $("input[class='field-same']");//div里面的input
 	var spanBox = $("span[class='mid-span-same']");//div里面的 'x'号 用来清空input
@@ -56,7 +96,6 @@ function checkForm() {
 		$(this).next().hide();
 	});
 	//小眼睛 图标  ：放上去鼠标变样式  ，点击打开关闭眼睛 并且修改input的type类型
-//	var eyeFlag = false;
 	eyeBox.mouseover(function() {
 		$(this).css("cursor", "pointer");
 	}).click(function() {
@@ -115,7 +154,7 @@ function checkCode() {
 				// 1.设置滑动成功后的样式
 				text.innerHTML = "验证通过";
 				text.style.color = "#fff";
-				btn.innerHTML = "&radic;";
+				btn.innerHTML = "<i class='iconfont icon-finish'></i>";
 				btn.style.color = "green";
 				bg.style.backgroundColor = "lightgreen";
 
