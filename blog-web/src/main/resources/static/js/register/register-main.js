@@ -18,14 +18,16 @@ function checkFormContent(){
 	var username = $("#username");//用户名
 	var password = $("#password");//密码
 	var repassword = $("#repassword");//重复密码
-	var reg_username = /^(?!\d+$)[\da-zA-Z]+$/;//只能是英文字母，且不能全是数字
-	var tips = null;
+	var reg_username = /^(?!\d+$)[\da-zA-Z]+$/;//只能是字母和数字，且不能全是数字
+	var tipsUsername = null;
 	var tipUsernameFlag = 0;
 	//校验用户名输入是否合格
 	username.focus(function(){
 		if(tipUsernameFlag == 0){
-			tips = layer.tips("<span style='color:red;'><i class='iconfont icon-point'></i></span>&nbsp;&nbsp;" +
-					"<span style='color:black;'>用户名由英文和数字组成，且不能全为数字</span>" +
+			tipsUsername = layer.tips("<span style='color:red;'><i class='iconfont icon-point'></i></span>&nbsp;&nbsp;" +
+					"<span style='color:black;'>用户名由字母和数字组成，且不能全为数字</span>" +
+					"<br/><span style='color:red;'><i class='iconfont icon-point'></i></span>&nbsp;&nbsp;" +
+					"<span style='color:black;'>用户名中不能包含非字母数字的特殊符号</span>" +
 					"<br/><span style='color:red;'><i class='iconfont icon-point'></i></span>&nbsp;&nbsp;" +
 					"<span style='color:black;'>用户名的长度为5~15位</span>", "#username_div", {
 				tips: ['2','#f0f0f0'],
@@ -37,14 +39,59 @@ function checkFormContent(){
 	});
 	username.blur(function(){
 		tipUsernameFlag=0;
-		layer.close(tips);
+		layer.close(tipsUsername);
 		if(BLOG.isNotNull(username.val())){//不为空的情况
-			$(this).parent().next().find("span[class='warn-tip-span']").hide();
-			if(reg_username.test($(this).val())){
-//				alert('ok');
+//			$(this).parent().next().find("span[class='warn-tip-span']").hide();
+			if(reg_username.test($(this).val()) && $(this).val().length>4 && $(this).val().length<16){
+				$(this).parent().next().find("span[class='warn-tip-span-after']").hide();
+			}else {
+				$(this).parent().next().find("span[class='warn-tip-span-after']").show();
+				$(this).parent().css("border-color","red");
 			}
 		}else{
-			$(this).parent().next().find("span[class='warn-tip-span']").show();
+//			$(this).parent().next().find("span[class='warn-tip-span']").show();
+			$(this).parent().next().find("span[class='warn-tip-span-after']").hide();
+		}
+	});
+	
+	var tipsPassword = null;
+	var tipPasswordFlag = 0;
+	//校验密码输入是否合格
+	password.focus(function(){
+		if(tipPasswordFlag == 0){
+			tipsPassword = layer.tips("<span style='color:red;'><i class='iconfont icon-point'></i></span>&nbsp;&nbsp;" +
+					"<span style='color:black;'>密码要包含字母、数字和下划线</span>" +
+					"<br/><span style='color:red;'><i class='iconfont icon-point'></i></span>&nbsp;&nbsp;" +
+					"<span style='color:black;'>密码长度为6~18位</span>" +
+					"<br/><span style='color:red;'><i class='iconfont icon-point'></i></span>&nbsp;&nbsp;" +
+					"<span style='color:black;'>密码要以字母开头</span>", "#password_div", {
+				tips: ['2','#f0f0f0'],
+				area: ['300px', '100px'],
+				time:0
+			});
+			tipPasswordFlag = 1;
+		}
+	});
+	password.blur(function(){
+		tipPasswordFlag=0;
+		layer.close(tipsPassword);
+		if(BLOG.isNotNull(password.val())){//不为空的情况
+			if(BLOG.checkPassword(password.val())){
+				$(this).parent().next().find("span[class='warn-tip-span-after']").hide();
+			}else {
+				$(this).parent().next().find("span[class='warn-tip-span-after']").show();
+				$(this).parent().css("border-color","red");
+			}
+		}else{
+			$(this).parent().next().find("span[class='warn-tip-span-after']").hide();
+			
+		}
+	});
+	repassword.blur(function(){
+		if(BLOG.isNotNull(repassword.val()) && repassword.val()!=password.val()){
+			$(this).parent().next().find("span[class='warn-tip-span-after']").show();
+		}else{
+			$(this).parent().next().find("span[class='warn-tip-span-after']").hide();
 		}
 	});
 	

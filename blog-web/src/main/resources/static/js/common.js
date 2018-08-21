@@ -107,6 +107,16 @@ var BLOG = {
         }
         return is;
     },
+    checkPassword: function(str){ //验证密码--以字母开头，长度在6-18之间，只能包含字母、数字和下划线
+    	var is = false;
+    	var re = /^[a-zA-Z]\w{5,17}$/;
+    	if (re.test(str)) {
+            is = true;
+        } else {
+            is = false;
+        }
+        return is;
+    },
     isNull: function(str) {//判断是否为空，此方法0不为空，返回false
         if (typeof str == 'undefined' || str == undefined || str == null || str === '') {
             return true;
