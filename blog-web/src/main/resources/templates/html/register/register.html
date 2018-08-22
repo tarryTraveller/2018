@@ -19,7 +19,7 @@
 			</label>
 		</div>
 		<div class="main-register" >
-			<form id="form_register">
+			<form id="form_register" >
 				<div class="same-register">
 					<label class="head-title">欢迎加入星系</label>
 					<span class="span-login">已有账号？<a href="#" class="a-login">立即登录</a></span>
@@ -37,6 +37,10 @@
 						<span class="warn-tip-span-after">
 							<i class="iconfont icon-quxiao-circle"></i>
 							用户名输入不符合要求
+						</span>
+						<span class="warn-tip-span-last">
+							<i class="iconfont icon-quxiao-circle"></i>
+							用户名已经存在
 						</span>
 					</div>
 				</div>
@@ -89,7 +93,7 @@
 					<div class="btn-register">&gt;&gt;</div>
 				</div>
 					<div class="warn-tip-div2" >
-						<span>
+						<span class="warn-tip-span">
 							<i class="iconfont icon-quxiao-circle"></i>
 							请拖动滑块验证码
 						</span>
@@ -102,10 +106,10 @@
 				</div>
 				<div class="same-register" >
 					<input type="checkbox" id="checkbox-register"  value="checkbox" checked="checked" /> 
-					<label for="checkbox-register"></label>
+					<label for="checkbox-register" id="checkbox-label"></label>
 					<a href="/register/item" target="_blank" class="a-xieyi">《法律声明及隐私权政策》</a>
 					<div class="warn-tip-div2" style="line-height: 50px;" >
-						<span>
+						<span class="warn-tip-span">
 							<i class="iconfont icon-quxiao-circle"></i>
 							请勾选同意协议
 						</span>

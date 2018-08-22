@@ -236,3 +236,6 @@ input {
 .warn-tip-span-after{
 	display: none;
 }
+.warn-tip-span-last{
+	display: none;
+}

@@ -1,3 +1,9 @@
+var username = $("#username");//用户名
+var password = $("#password");//密码
+var repassword = $("#repassword");//重复密码
+var sliderFlag = false;//滑块 验证码
+var reg_username = /^(?!\d+$)[\da-zA-Z]{5,15}$/;//只能是字母和数字，且不能全是数字
+
 $(function() {
 	checkFormStyle();//校验表单样式
 	checkCode();//校验验证码
@@ -7,18 +13,39 @@ $(function() {
 
 function but() {
 	$(".same-register2").click(function() {
-		alert(1);
+		checkIsNull();
+		return false;
 	});
+}
+
+/**
+ * 当点击提交表单按钮的时候，调用该方法，会检验所有空值
+ */
+function checkIsNull(){
+	//校验用户名
+	if(BLOG.isNull(username.val())){
+		username.parent().next().find("span[class='warn-tip-span']").show();
+		username.parent().css("border-color","red");
+	}else{
+		if(reg_username.test(username.val())){
+			$.post('/register/check',{"username":username.val()},function(data){
+				if(data=='error'){
+					username.parent().next().find("span[class='warn-tip-span-last']").show();
+					username.parent().next().find("span[class='warn-tip-span-after']").hide();
+					username.parent().css("border-color","red");
+				}
+			});
+		}else {
+			username.parent().next().find("span[class='warn-tip-span-after']").show();
+			username.parent().css("border-color","red");
+		}
+	}
 }
 
 /**
  * 检验表单输入情况，js拦截不符合的输入
  */
 function checkFormContent(){
-	var username = $("#username");//用户名
-	var password = $("#password");//密码
-	var repassword = $("#repassword");//重复密码
-	var reg_username = /^(?!\d+$)[\da-zA-Z]+$/;//只能是字母和数字，且不能全是数字
 	var tipsUsername = null;
 	var tipUsernameFlag = 0;
 	//校验用户名输入是否合格
@@ -41,16 +68,17 @@ function checkFormContent(){
 		tipUsernameFlag=0;
 		layer.close(tipsUsername);
 		if(BLOG.isNotNull(username.val())){//不为空的情况
-//			$(this).parent().next().find("span[class='warn-tip-span']").hide();
-			if(reg_username.test($(this).val()) && $(this).val().length>4 && $(this).val().length<16){
+			$(this).parent().next().find("span[class='warn-tip-span']").hide();
+			if(reg_username.test($(this).val())){
 				$(this).parent().next().find("span[class='warn-tip-span-after']").hide();
 			}else {
 				$(this).parent().next().find("span[class='warn-tip-span-after']").show();
 				$(this).parent().css("border-color","red");
 			}
 		}else{
-//			$(this).parent().next().find("span[class='warn-tip-span']").show();
 			$(this).parent().next().find("span[class='warn-tip-span-after']").hide();
+			$(this).parent().next().find("span[class='warn-tip-span']").hide();
+			$(this).parent().next().find("span[class='warn-tip-span-last']").hide();
 		}
 	});
 	
@@ -84,17 +112,27 @@ function checkFormContent(){
 			}
 		}else{
 			$(this).parent().next().find("span[class='warn-tip-span-after']").hide();
-			
+		}
+		
+		if(BLOG.isNotNull(repassword.val()) && repassword.val()!=password.val()){
+			repassword.parent().next().find("span[class='warn-tip-span-after']").show();
+			repassword.parent().css("border-color","red");
+		}else{
+			repassword.parent().next().find("span[class='warn-tip-span-after']").hide();
+			repassword.parent().css("border-color","");
 		}
 	});
 	repassword.blur(function(){
 		if(BLOG.isNotNull(repassword.val()) && repassword.val()!=password.val()){
 			$(this).parent().next().find("span[class='warn-tip-span-after']").show();
+			$(this).parent().css("border-color","red");
 		}else{
 			$(this).parent().next().find("span[class='warn-tip-span-after']").hide();
 		}
 	});
-	
+	if(BLOG.isNull(repassword.val())){
+		repassword.parent().next().find("span[class='warn-tip-span-after']").hide();
+	}
 }
 
 /**
@@ -141,6 +179,17 @@ function checkFormStyle() {
 		$(this).prev("input[class='field-same']").val('');
 		$(this).hide();
 		$(this).next().hide();
+		if(BLOG.isNull(repassword.val())){
+			repassword.parent().next().find("span[class='warn-tip-span-after']").hide();
+		}
+		if(BLOG.isNull(password.val())){
+			password.parent().next().find("span[class='warn-tip-span-after']").hide();
+		}
+		if(BLOG.isNull(username.val())){
+			username.parent().next().find("span[class='warn-tip-span-last']").hide();
+			username.parent().next().find("span[class='warn-tip-span-after']").hide();
+			username.parent().next().find("span[class='warn-tip-span']").hide();
+		}
 	});
 	//小眼睛 图标  ：放上去鼠标变样式  ，点击打开关闭眼睛 并且修改input的type类型
 	eyeBox.mouseover(function() {
@@ -154,6 +203,15 @@ function checkFormStyle() {
 		}else{
 			$(this).prev().prev("input[class='field-same']").attr("type","password");
 			$(this).find("i").attr("class","iconfont icon-eye");
+		}
+	});
+	$("#checkbox-label").click(function(){
+		if($("#checkbox-register").attr("checked")=="checked"){
+			$("#checkbox-register").removeAttr("checked");
+			$("#checkbox-register").parent().find("span[class='warn-tip-span']").hide();
+		}else{
+			$("#checkbox-register").attr("checked","checked");
+			$("#checkbox-register").parent().find("span[class='warn-tip-span']").show();
 		}
 	});
 }
@@ -213,6 +271,7 @@ function checkCode() {
 
 				// 3.成功解锁后的回调函数
 				setTimeout(function() {
+					sliderFlag = true;
 					alert('解锁成功！');
 				}, 100);
 			}

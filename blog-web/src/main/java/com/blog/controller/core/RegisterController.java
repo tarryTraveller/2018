@@ -1,13 +1,22 @@
 
 package com.blog.controller.core;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.blog.controller.base.BaseController;
+import com.blog.service.core.RegisterService;
+import com.fasterxml.jackson.annotation.JsonView;
 
 @Controller
 @RequestMapping("register")
-public class RegisterController {
+public class RegisterController extends BaseController {
+
+	@Autowired
+	private RegisterService registerService;
 
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public String register() {
@@ -19,5 +28,16 @@ public class RegisterController {
 	@RequestMapping(value = "item", method = RequestMethod.GET)
 	public String showItem() {
 		return "register/register_item";
+	}
+
+	@RequestMapping(value = "check", method = RequestMethod.POST)
+	@ResponseBody
+	@JsonView
+	public Object check(String username) {
+		boolean bool = registerService.checkUserName(username);
+		if (bool) {
+			return SUCCESS;
+		}
+		return ERROR;
 	}
 }

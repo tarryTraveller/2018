@@ -14,7 +14,7 @@
         <javaClientGenerator targetPackage="com.blog.dao.mapper" targetProject="src/main/java" type="XMLMAPPER"/>
 
 		<!-- 公共码表 -->
-        <table tableName="SYS_USER"/>
+        <table tableName="sys_user"/>
         
     </context>
 </generatorConfiguration>

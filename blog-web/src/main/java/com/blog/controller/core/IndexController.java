@@ -5,13 +5,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.blog.controller.base.BaseController;
+
 @Controller
-public class IndexController {
+public class IndexController extends BaseController {
 
 	// 首页
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public String index() {
-		new String(new char[6], 0, 0);
 		return "index";
 	}
 }
