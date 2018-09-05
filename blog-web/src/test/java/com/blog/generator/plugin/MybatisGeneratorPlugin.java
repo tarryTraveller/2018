@@ -31,7 +31,7 @@ import org.springframework.stereotype.Repository;
 /**
  * Mybatis自动生成代码插件
  * 
- * @author zhangbin
+ * @author sulei
  *
  */
 public class MybatisGeneratorPlugin extends PluginAdapter {
