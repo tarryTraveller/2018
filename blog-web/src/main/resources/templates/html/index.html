@@ -1,10 +1,22 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" >
+<html xmlns:layout="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org" data-layout-decorator="layout/main">
 <head>
 <meta charset="UTF-8">
 <title>博客官网首页</title>
 </head>
-<body>
-	欢迎<span th:text="${username2}"></span>进来！
+<body data-layout-fragment="content">
+	欢迎<span th:text="${username}"></span>进来！
+	<p>
+		<input type="button" id="btnLogout" value="退出" />
+	</p>
+	<p>
+		<input type="button" id="btnShowMap" value="登录后点击显示地图" />
+	</p>
+
+	<script>
+		document.write("<script type='text/javascript' src='/js/index.js?v="
+						+ Math.random() + "'></scri"+"pt>");
+	</script>
 </body>
 </html>

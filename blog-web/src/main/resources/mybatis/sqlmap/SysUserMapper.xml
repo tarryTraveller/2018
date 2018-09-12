@@ -2,18 +2,16 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.blog.dao.mapper.SysUserMapperExt" >
   <resultMap id="BaseResultMap" type="com.blog.dao.model.SysUser" >
-    <id column="USER_ID" property="userId" jdbcType="VARCHAR" />
-    <result column="USERNAME" property="username" jdbcType="VARCHAR" />
-    <result column="NAME" property="name" jdbcType="VARCHAR" />
-    <result column="PASSWORD" property="password" jdbcType="VARCHAR" />
-    <result column="ROLE_ID" property="roleId" jdbcType="VARCHAR" />
-    <result column="MOBILE" property="mobile" jdbcType="VARCHAR" />
-    <result column="EMAIL" property="email" jdbcType="VARCHAR" />
-    <result column="IS_DELETED" property="isDeleted" jdbcType="CHAR" />
-    <result column="GMT_CREATED" property="gmtCreated" jdbcType="DATE" />
-    <result column="GMT_MODIFIED" property="gmtModified" jdbcType="DATE" />
-    <result column="USER_TYPE" property="userType" jdbcType="CHAR" />
-    <result column="AGE" property="age" jdbcType="TINYINT" />
+    <id column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="username" property="username" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="age" property="age" jdbcType="TINYINT" />
+    <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="gmt_created" property="gmtCreated" jdbcType="DATE" />
+    <result column="gmt_modified" property="gmtModified" jdbcType="DATE" />
+    <result column="is_deleted" property="isDeleted" jdbcType="CHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -74,8 +72,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    USER_ID, USERNAME, NAME, PASSWORD, ROLE_ID, MOBILE, EMAIL, IS_DELETED, GMT_CREATED, 
-    GMT_MODIFIED, USER_TYPE, AGE
+    user_id, username, password, name, age, mobile, email, gmt_created, gmt_modified, 
+    is_deleted
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.blog.dao.model.SysUserExample" >
     select
@@ -95,11 +93,11 @@
     select 
     <include refid="Base_Column_List" />
     from sys_user
-    where USER_ID = #{userId,jdbcType=VARCHAR}
+    where user_id = #{userId,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from sys_user
-    where USER_ID = #{userId,jdbcType=VARCHAR}
+    where user_id = #{userId,jdbcType=VARCHAR}
   </delete>
   <delete id="deleteByExample" parameterType="com.blog.dao.model.SysUserExample" >
     delete from sys_user
@@ -117,40 +115,34 @@
     update sys_user
     <set >
       <if test="record.userId != null" >
-        USER_ID = #{record.userId,jdbcType=VARCHAR},
+        user_id = #{record.userId,jdbcType=VARCHAR},
       </if>
       <if test="record.username != null" >
-        USERNAME = #{record.username,jdbcType=VARCHAR},
-      </if>
-      <if test="record.name != null" >
-        NAME = #{record.name,jdbcType=VARCHAR},
+        username = #{record.username,jdbcType=VARCHAR},
       </if>
       <if test="record.password != null" >
-        PASSWORD = #{record.password,jdbcType=VARCHAR},
+        password = #{record.password,jdbcType=VARCHAR},
       </if>
-      <if test="record.roleId != null" >
-        ROLE_ID = #{record.roleId,jdbcType=VARCHAR},
-      </if>
-      <if test="record.mobile != null" >
-        MOBILE = #{record.mobile,jdbcType=VARCHAR},
-      </if>
-      <if test="record.email != null" >
-        EMAIL = #{record.email,jdbcType=VARCHAR},
-      </if>
-      <if test="record.isDeleted != null" >
-        IS_DELETED = #{record.isDeleted,jdbcType=CHAR},
-      </if>
-      <if test="record.gmtCreated != null" >
-        GMT_CREATED = #{record.gmtCreated,jdbcType=DATE},
-      </if>
-      <if test="record.gmtModified != null" >
-        GMT_MODIFIED = #{record.gmtModified,jdbcType=DATE},
-      </if>
-      <if test="record.userType != null" >
-        USER_TYPE = #{record.userType,jdbcType=CHAR},
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
       </if>
       <if test="record.age != null" >
-        AGE = #{record.age,jdbcType=TINYINT},
+        age = #{record.age,jdbcType=TINYINT},
+      </if>
+      <if test="record.mobile != null" >
+        mobile = #{record.mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.email != null" >
+        email = #{record.email,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gmtCreated != null" >
+        gmt_created = #{record.gmtCreated,jdbcType=DATE},
+      </if>
+      <if test="record.gmtModified != null" >
+        gmt_modified = #{record.gmtModified,jdbcType=DATE},
+      </if>
+      <if test="record.isDeleted != null" >
+        is_deleted = #{record.isDeleted,jdbcType=CHAR},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -159,18 +151,16 @@
   </update>
   <update id="updateByExample" parameterType="map" >
     update sys_user
-    set USER_ID = #{record.userId,jdbcType=VARCHAR},
-      USERNAME = #{record.username,jdbcType=VARCHAR},
-      NAME = #{record.name,jdbcType=VARCHAR},
-      PASSWORD = #{record.password,jdbcType=VARCHAR},
-      ROLE_ID = #{record.roleId,jdbcType=VARCHAR},
-      MOBILE = #{record.mobile,jdbcType=VARCHAR},
-      EMAIL = #{record.email,jdbcType=VARCHAR},
-      IS_DELETED = #{record.isDeleted,jdbcType=CHAR},
-      GMT_CREATED = #{record.gmtCreated,jdbcType=DATE},
-      GMT_MODIFIED = #{record.gmtModified,jdbcType=DATE},
-      USER_TYPE = #{record.userType,jdbcType=CHAR},
-      AGE = #{record.age,jdbcType=TINYINT}
+    set user_id = #{record.userId,jdbcType=VARCHAR},
+      username = #{record.username,jdbcType=VARCHAR},
+      password = #{record.password,jdbcType=VARCHAR},
+      name = #{record.name,jdbcType=VARCHAR},
+      age = #{record.age,jdbcType=TINYINT},
+      mobile = #{record.mobile,jdbcType=VARCHAR},
+      email = #{record.email,jdbcType=VARCHAR},
+      gmt_created = #{record.gmtCreated,jdbcType=DATE},
+      gmt_modified = #{record.gmtModified,jdbcType=DATE},
+      is_deleted = #{record.isDeleted,jdbcType=CHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -179,79 +169,67 @@
     update sys_user
     <set >
       <if test="username != null" >
-        USERNAME = #{username,jdbcType=VARCHAR},
-      </if>
-      <if test="name != null" >
-        NAME = #{name,jdbcType=VARCHAR},
+        username = #{username,jdbcType=VARCHAR},
       </if>
       <if test="password != null" >
-        PASSWORD = #{password,jdbcType=VARCHAR},
+        password = #{password,jdbcType=VARCHAR},
       </if>
-      <if test="roleId != null" >
-        ROLE_ID = #{roleId,jdbcType=VARCHAR},
-      </if>
-      <if test="mobile != null" >
-        MOBILE = #{mobile,jdbcType=VARCHAR},
-      </if>
-      <if test="email != null" >
-        EMAIL = #{email,jdbcType=VARCHAR},
-      </if>
-      <if test="isDeleted != null" >
-        IS_DELETED = #{isDeleted,jdbcType=CHAR},
-      </if>
-      <if test="gmtCreated != null" >
-        GMT_CREATED = #{gmtCreated,jdbcType=DATE},
-      </if>
-      <if test="gmtModified != null" >
-        GMT_MODIFIED = #{gmtModified,jdbcType=DATE},
-      </if>
-      <if test="userType != null" >
-        USER_TYPE = #{userType,jdbcType=CHAR},
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
       </if>
       <if test="age != null" >
-        AGE = #{age,jdbcType=TINYINT},
+        age = #{age,jdbcType=TINYINT},
+      </if>
+      <if test="mobile != null" >
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtCreated != null" >
+        gmt_created = #{gmtCreated,jdbcType=DATE},
+      </if>
+      <if test="gmtModified != null" >
+        gmt_modified = #{gmtModified,jdbcType=DATE},
+      </if>
+      <if test="isDeleted != null" >
+        is_deleted = #{isDeleted,jdbcType=CHAR},
       </if>
     </set>
-    where USER_ID = #{userId,jdbcType=VARCHAR}
+    where user_id = #{userId,jdbcType=VARCHAR}
   </update>
   <insert id="insertSelective" parameterType="com.blog.dao.model.SysUser" useGeneratedKeys="true" keyProperty="id" >
     insert into sys_user
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="userId != null" >
-        USER_ID,
+        user_id,
       </if>
       <if test="username != null" >
-        USERNAME,
-      </if>
-      <if test="name != null" >
-        NAME,
+        username,
       </if>
       <if test="password != null" >
-        PASSWORD,
+        password,
       </if>
-      <if test="roleId != null" >
-        ROLE_ID,
-      </if>
-      <if test="mobile != null" >
-        MOBILE,
-      </if>
-      <if test="email != null" >
-        EMAIL,
-      </if>
-      <if test="isDeleted != null" >
-        IS_DELETED,
-      </if>
-      <if test="gmtCreated != null" >
-        GMT_CREATED,
-      </if>
-      <if test="gmtModified != null" >
-        GMT_MODIFIED,
-      </if>
-      <if test="userType != null" >
-        USER_TYPE,
+      <if test="name != null" >
+        name,
       </if>
       <if test="age != null" >
-        AGE,
+        age,
+      </if>
+      <if test="mobile != null" >
+        mobile,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="gmtCreated != null" >
+        gmt_created,
+      </if>
+      <if test="gmtModified != null" >
+        gmt_modified,
+      </if>
+      <if test="isDeleted != null" >
+        is_deleted,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -261,14 +239,14 @@
       <if test="username != null" >
         #{username,jdbcType=VARCHAR},
       </if>
-      <if test="name != null" >
-        #{name,jdbcType=VARCHAR},
-      </if>
       <if test="password != null" >
         #{password,jdbcType=VARCHAR},
       </if>
-      <if test="roleId != null" >
-        #{roleId,jdbcType=VARCHAR},
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null" >
+        #{age,jdbcType=TINYINT},
       </if>
       <if test="mobile != null" >
         #{mobile,jdbcType=VARCHAR},
@@ -276,20 +254,14 @@
       <if test="email != null" >
         #{email,jdbcType=VARCHAR},
       </if>
-      <if test="isDeleted != null" >
-        #{isDeleted,jdbcType=CHAR},
-      </if>
       <if test="gmtCreated != null" >
         #{gmtCreated,jdbcType=DATE},
       </if>
       <if test="gmtModified != null" >
         #{gmtModified,jdbcType=DATE},
       </if>
-      <if test="userType != null" >
-        #{userType,jdbcType=CHAR},
-      </if>
-      <if test="age != null" >
-        #{age,jdbcType=TINYINT},
+      <if test="isDeleted != null" >
+        #{isDeleted,jdbcType=CHAR},
       </if>
     </trim>
   </insert>

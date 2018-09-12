@@ -13,8 +13,18 @@
         <sqlMapGenerator targetPackage="mybatis.sqlmap" targetProject="src/main/resources"/>
         <javaClientGenerator targetPackage="com.blog.dao.mapper" targetProject="src/main/java" type="XMLMAPPER"/>
 
-		<!-- 公共码表 -->
+		<!-- 系统表 -->
+		
+		<!-- 用户表-->
         <table tableName="sys_user"/>
+        <!-- 角色表-->
+        <table tableName="sys_role"/>
+        <!-- 用户角色表-->
+        <table tableName="sys_user_role"/>
+        <!-- 权限表-->
+        <table tableName="sys_permission"/>
+        <!-- 用户权限表-->
+        <table tableName="sys_role_permission"/>
         
     </context>
 </generatorConfiguration>

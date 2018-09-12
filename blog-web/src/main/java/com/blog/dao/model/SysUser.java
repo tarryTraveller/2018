@@ -7,25 +7,21 @@ public class SysUser {
 
     private String username;
 
-    private String name;
-
     private String password;
 
-    private String roleId;
+    private String name;
+
+    private Byte age;
 
     private String mobile;
 
     private String email;
 
-    private String isDeleted;
-
     private Date gmtCreated;
 
     private Date gmtModified;
 
-    private String userType;
-
-    private Byte age;
+    private String isDeleted;
 
     public String getUserId() {
         return userId;
@@ -43,14 +39,6 @@ public class SysUser {
         this.username = username;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getPassword() {
         return password;
     }
@@ -59,12 +47,20 @@ public class SysUser {
         this.password = password;
     }
 
-    public String getRoleId() {
-        return roleId;
+    public String getName() {
+        return name;
     }
 
-    public void setRoleId(String roleId) {
-        this.roleId = roleId;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Byte getAge() {
+        return age;
+    }
+
+    public void setAge(Byte age) {
+        this.age = age;
     }
 
     public String getMobile() {
@@ -83,14 +79,6 @@ public class SysUser {
         this.email = email;
     }
 
-    public String getIsDeleted() {
-        return isDeleted;
-    }
-
-    public void setIsDeleted(String isDeleted) {
-        this.isDeleted = isDeleted;
-    }
-
     public Date getGmtCreated() {
         return gmtCreated;
     }
@@ -107,19 +95,11 @@ public class SysUser {
         this.gmtModified = gmtModified;
     }
 
-    public String getUserType() {
-        return userType;
+    public String getIsDeleted() {
+        return isDeleted;
     }
 
-    public void setUserType(String userType) {
-        this.userType = userType;
-    }
-
-    public Byte getAge() {
-        return age;
-    }
-
-    public void setAge(Byte age) {
-        this.age = age;
+    public void setIsDeleted(String isDeleted) {
+        this.isDeleted = isDeleted;
     }
 }
