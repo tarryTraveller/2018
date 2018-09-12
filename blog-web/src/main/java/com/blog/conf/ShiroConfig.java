@@ -13,6 +13,8 @@ import org.springframework.context.annotation.Configuration;
 
 import com.blog.lang.base.realm.MyShiroRealm;
 
+import at.pollux.thymeleaf.shiro.dialect.ShiroDialect;
+
 @Configuration
 public class ShiroConfig {
 
@@ -45,7 +47,7 @@ public class ShiroConfig {
 		map.put("/static/**", "anon");
 		map.put("/register", "anon");
 		map.put("/login/check", "anon");
-		map.put("/map", "authc");
+		map.put("/map", "authc,roles[普通管理人员]");
 		map.put("/**", "authc");
 		shiroFilterFactoryBean.setFilterChainDefinitionMap(map);
 		// 登录
@@ -53,7 +55,7 @@ public class ShiroConfig {
 		// 首页
 		// shiroFilterFactoryBean.setSuccessUrl("/index");
 		// 错误页面，认证不通过跳转
-		// shiroFilterFactoryBean.setUnauthorizedUrl("/login/error");
+		shiroFilterFactoryBean.setUnauthorizedUrl("/login/error");
 		return shiroFilterFactoryBean;
 	}
 
@@ -63,5 +65,10 @@ public class ShiroConfig {
 		AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor = new AuthorizationAttributeSourceAdvisor();
 		authorizationAttributeSourceAdvisor.setSecurityManager(securityManager);
 		return authorizationAttributeSourceAdvisor;
+	}
+
+	@Bean
+	public ShiroDialect shiroDialect() {
+		return new ShiroDialect();
 	}
 }

@@ -1,15 +1,20 @@
 
 package com.blog.lang.base.realm;
 
+import java.util.List;
+
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.SimpleAuthenticationInfo;
 import org.apache.shiro.authz.AuthorizationInfo;
+import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.blog.dao.model.SysPermission;
+import com.blog.dao.model.SysRole;
 import com.blog.dao.model.SysUser;
 import com.blog.service.sys.SysUserService;
 
@@ -22,23 +27,23 @@ public class MyShiroRealm extends AuthorizingRealm {
 	// 角色权限和对应权限添加
 	@Override
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
-		// // 获取登录用户名
-		// String name = (String) principalCollection.getPrimaryPrincipal();
-		// // 查询用户名称
-		// User user = loginService.findByName(name);
-		// // 添加角色和权限
-		// SimpleAuthorizationInfo simpleAuthorizationInfo = new
-		// SimpleAuthorizationInfo();
-		// for (Role role : user.getRoles()) {
-		// // 添加角色
-		// simpleAuthorizationInfo.addRole(role.getRoleName());
-		// for (Permission permission : role.getPermissions()) {
-		// // 添加权限
-		// simpleAuthorizationInfo.addStringPermission(permission.getPermission());
-		// }
-		// }
-		// return simpleAuthorizationInfo;
-		return null;
+		// 获取登录用户名
+		String name = (String) principalCollection.getPrimaryPrincipal();
+		// 查询用户名称
+		SysUser sysUser = sysUserService.getByName(name);
+		List<SysRole> list = sysUserService.getRolesByUserId(sysUser.getUserId());
+		// 添加角色和权限
+		SimpleAuthorizationInfo simpleAuthorizationInfo = new SimpleAuthorizationInfo();
+		for (SysRole sysRole : list) {
+			// 添加角色
+			simpleAuthorizationInfo.addRole(sysRole.getRoleName());
+			List<SysPermission> roleList = sysUserService.getPermsByRoleId(sysRole.getId());
+			for (SysPermission sysPermission : roleList) {
+				// 添加权限
+				simpleAuthorizationInfo.addStringPermission(sysPermission.getPermissionName());
+			}
+		}
+		return simpleAuthorizationInfo;
 	}
 
 	// 用户认证

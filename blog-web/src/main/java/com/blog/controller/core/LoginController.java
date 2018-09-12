@@ -26,6 +26,11 @@ public class LoginController extends BaseController {
 		return "login/login";
 	}
 
+	@RequestMapping(value = "error", method = RequestMethod.GET)
+	public String error() {
+		return "error/403";
+	}
+
 	@RequestMapping(value = "check", method = RequestMethod.POST)
 	@ResponseBody
 	@JsonView
